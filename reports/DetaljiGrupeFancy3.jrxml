@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DetaljiGrupeFancy3" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="901e34b9-bd83-4ab1-b53c-0047de78a40e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     c.sifra AS c_sifraProizvoda,
+     c.`nazivpr` AS c_nazivpr,
+     c.`cijena` AS c_cijena,
+     a.`nazivmat` AS a_nazivmat,
+     a.`cijenamat` AS a_cijenamat,    
+     e.`cijenarada` AS e_cijenarada,
+     f.`ime` AS f_ime,
+     f.`prezime` AS f_prezime
+FROM
+     `clan` b INNER JOIN `materijal` a ON b.`materijal` = a.`sifra`
+     INNER JOIN `proizvod` c ON b.`proizvod` = c.`sifra`
+     INNER JOIN `clan1` d ON c.`sifra` = d.`proizvod`
+     INNER JOIN `rad` e ON d.`rad` = e.`sifra`
+     INNER JOIN `osoba` f ON e.`osoba` = f.`sifra`
+WHERE
+     f.uloga = 'Uposlenik']]>
+	</queryString>
+	<field name="c_sifraProizvoda" class="java.lang.Integer"/>
+	<field name="c_nazivpr" class="java.lang.String"/>
+	<field name="c_cijena" class="java.math.BigDecimal"/>
+	<field name="a_nazivmat" class="java.lang.String"/>
+	<field name="a_cijenamat" class="java.math.BigDecimal"/>
+	<field name="e_cijenarada" class="java.math.BigDecimal"/>
+	<field name="f_ime" class="java.lang.String"/>
+	<field name="f_prezime" class="java.lang.String"/>
+	<sortField name="PAGE_NUMBER" type="Variable"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="693ceba2-3a09-4e67-af99-1328a38a9e76"/>
+				<imageExpression><![CDATA["najmanjiLogoZ.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#CCFFFF" uuid="f858c438-94b2-48bd-9d6a-ef70a507c243"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" forecolor="#006666" uuid="9db7128e-3689-4d9c-a5bf-b5a4b0c4acda"/>
+					<textElement>
+						<font fontName="Tahoma" isBold="false"/>
+					</textElement>
+					<text><![CDATA[MOJA FIRMA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="199" y="66" width="249" height="29" forecolor="#006666" uuid="47938c38-41cb-44af-b456-c1bb2b7414a3"/>
+					<textElement textAlignment="Right">
+						<font fontName="Tahoma" size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Detalji proizvoda]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#00CCCC" uuid="7e94acfd-2a91-45d1-b4c9-6720a7bc23b4"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#006666" uuid="f679eb7f-b3f0-4a2e-8efb-4dc35ae71a67"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="79" height="18" forecolor="#000000" uuid="3ed1409d-a101-47d0-a362-36a4cbc81a28"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Proizvod]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="79" y="7" width="79" height="18" forecolor="#000000" uuid="eff06f9a-15b0-43c6-b172-16e1d540b190"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cijena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="158" y="7" width="79" height="18" forecolor="#000000" uuid="3496a990-e447-4091-87ac-339950d2c50e"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Materijal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="237" y="7" width="58" height="18" forecolor="#000000" uuid="addd1642-8d70-49e9-a05b-959fa2d89a84"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cijena materijala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="295" y="7" width="79" height="18" forecolor="#000000" uuid="83388581-2e14-486e-b2c7-f2300487aeb0"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="374" y="7" width="69" height="18" forecolor="#000000" uuid="4e5e1dfe-753b-44a3-817c-a5c302254558"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="448" y="7" width="79" height="18" forecolor="#000000" uuid="83d854d9-d145-487e-9438-ff84afc82c66"/>
+				<textElement>
+					<font fontName="Tahoma" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Prezime]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="79f4c9fb-1439-4c9e-b255-45ee237b4d50"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="79" height="18" uuid="a516ea47-7c08-4f5f-95c1-8fb05df91948"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nazivpr}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="79" y="0" width="79" height="18" uuid="2c4b59de-0045-4745-ba9a-ea539dc6ddda"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cijena}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="158" y="0" width="79" height="18" uuid="8b5fb66c-8602-48e6-82fb-bb82b71cf37b"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nazivmat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="237" y="0" width="58" height="18" uuid="313a8a46-35a5-44f5-9d1f-adafaff676e0"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cijenamat}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="295" y="0" width="110" height="18" uuid="ea747d26-21f3-4a7e-87b3-b5c5a3bf5c10"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nazivrada}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="370" y="0" width="69" height="18" uuid="8b981118-1d1a-4904-9b32-aeae76b44031"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ime}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="448" y="0" width="79" height="18" uuid="7fd68de3-6632-4ced-8a29-cf5b7d20bdf9"/>
+					<textElement>
+						<font fontName="Tahoma" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prezime}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="b06a6c85-224b-475e-b033-278b60316d71"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#CCFFFF" uuid="d633cd97-2389-4e04-b3c7-93180e45b0d3"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#333333" uuid="f556fd51-139d-44b4-949f-b6ed2bf3f2af"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#333333" uuid="06ca1308-3696-46e6-ab89-fc1863b419e0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#333333" uuid="1990efc3-6c80-40ad-bbb6-fd1fa754b3e1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Tahoma" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

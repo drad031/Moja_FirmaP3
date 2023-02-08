@@ -1,0 +1,3 @@
+c:\xampp\mysql\bin\mysql -uedunova -pedunova --default_character_set=utf8 < "D:\J14edunova\Moja_FirmaP3\moja_firmaDDL.sql"
+c:\xampp\mysql\bin\mysql -uedunova -pedunova moja_firma --default_character_set=utf8 < "D:\J14edunova\Moja_FirmaP3\moja_firmaDML - Copy.sql"
+
